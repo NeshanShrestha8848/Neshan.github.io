@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Neshan Shrestha | Graphic Designer & Full Stack Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #00d4c0;
+      --primary-dark: #00b8a9;
+      --accent: #ff6f4a;
+      --bg-dark: #070707;
+      --bg-card: #0f0f0f;
+      --bg-elevated: #161616;
+      --text-primary: #ffffff;
+      --text-secondary: #c0c0c0;
+      --text-muted: #7a7a7a;
+      --border: #262626;
+      --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.5);
+      --shadow-hover: 0 25px 45px -12px rgba(0, 212, 192, 0.25);
+      --transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+    h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
+    
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+      color: var(--text-primary);
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 4px;
+    }
+    
+    .hero {
+      background: radial-gradient(ellipse at 30% 40%, #0d1211 0%, #050505 100%);
+      border-radius: 0 0 64px 64px;
+      padding: 90px 0 80px;
+      border-bottom: 1px solid rgba(0, 212, 192, 0.15);
+    }
+    .hero-content { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 48px; }
+    .hero-text { flex: 1.2; }
+    .hero-name { font-size: 4.5rem; font-weight: 800; line-height: 1.15; margin-bottom: 24px; }
+    .hero-titles { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+    .badge {
+      background: rgba(0, 212, 192, 0.08);
+      padding: 8px 26px;
+      border-radius: 100px;
+      font-weight: 600;
+      color: var(--primary);
+      border: 1px solid rgba(0, 212, 192, 0.35);
+    }
+    .badge i { margin-right: 10px; }
+    .hero-line { width: 70px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); margin-bottom: 32px; }
+    .hero-desc { font-size: 1.2rem; color: var(--text-secondary); max-width: 560px; margin-bottom: 40px; }
+    .btn-group { display: flex; gap: 20px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 34px;
+      border-radius: 100px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #070707; }
+    .btn-primary:hover { transform: translateY(-4px); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--primary); color: var(--primary); }
+    .btn-outline:hover { background: rgba(0, 212, 192, 0.1); transform: translateY(-4px); }
+    .hero-visual { flex: 0.8; display: flex; justify-content: center; }
+    .image-wrapper {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      padding: 3px;
+      box-shadow: var(--shadow-md);
+    }
+    .profile-image { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: var(--bg-card); }
+    
+    .samples-section { padding: 80px 0; }
+    .samples-header { text-align: center; margin-bottom: 50px; }
+    .samples-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 15px;
+    }
+    .samples-subtitle { color: var(--text-secondary); font-size: 1rem; text-align: center; max-width: 600px; margin: 0 auto; }
+    .samples-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; margin-top: 40px; }
+    .sample-card {
+      background: var(--bg-card);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .sample-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: var(--shadow-hover); }
+    .sample-preview {
+      height: 200px;
+      background: linear-gradient(145deg, var(--bg-elevated), #121212);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .sample-preview i { font-size: 65px; color: var(--primary); transition: var(--transition); }
+    .sample-card:hover .sample-preview i { transform: scale(1.1); text-shadow: 0 0 20px var(--primary); }
+    .sample-info { padding: 28px; text-align: center; }
+    .sample-info h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--text-primary); }
+    .sample-info p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; line-height: 1.5; }
+    .sample-stats {
+      display: inline-block;
+      background: rgba(0, 212, 192, 0.1);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--primary);
+      border: 1px solid rgba(0, 212, 192, 0.3);
+      margin-bottom: 16px;
+    }
+    .view-gallery-btn {
+      margin-top: 8px;
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: var(--transition);
+    }
+    .view-gallery-btn:hover { background: var(--primary); color: #0a0a0a; }
+    
+    .loading-spinner { text-align: center; padding: 60px; color: var(--primary); }
+    .loading-spinner i { font-size: 48px; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    
+    #education { background: radial-gradient(ellipse at center, #0a0c0b 0%, #050505 100%); padding: 80px 0 90px; }
+    .edu-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+    .edu-block {
+      flex: 1;
+      min-width: 280px;
+      background: var(--bg-card);
+      padding: 48px 32px;
+      border-radius: 40px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .edu-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.4s ease; }
+    .edu-block:hover::before { transform: scaleX(1); }
+    .edu-block:hover { transform: translateY(-8px); border-color: var(--primary); }
+    .edu-icon { font-size: 3.2rem; color: var(--primary); margin-bottom: 24px; }
+    .edu-block h3 { font-size: 1.6rem; margin-bottom: 16px; }
+    .edu-status { color: var(--accent); font-weight: 600; font-size: 1rem; margin-bottom: 8px; }
+    .edu-detail { color: var(--text-secondary); font-size: 0.9rem; }
+    .edu-gpa { color: var(--primary); font-weight: 600; margin-top: 8px; }
+    
+    #about { padding: 80px 0; }
+    .about-card { background: rgba(15, 15, 15, 0.8); padding: 52px; border-radius: 40px; border: 1px solid var(--border); transition: var(--transition); }
+    .about-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+    .about-text-main { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 36px; }
+    .skills-strip { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skills-strip span { background: var(--bg-elevated); padding: 8px 22px; border-radius: 100px; font-size: 0.85rem; color: var(--primary); border: 1px solid var(--border); }
+    
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; padding: 20px 0 60px; }
+    .project-card { background: var(--bg-card); border-radius: 28px; padding: 38px 28px; text-align: center; border: 1px solid var(--border); transition: var(--transition); }
+    .project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+    .project-icon { width: 90px; height: 90px; background: var(--bg-elevated); border-radius: 30px; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; border: 1px solid var(--border); }
+    .project-icon i { font-size: 44px; color: var(--primary); }
+    .project-card h3 { font-size: 1.5rem; margin-bottom: 16px; }
+    .project-card p { color: var(--text-secondary); margin-bottom: 20px; }
+    .project-quote { background: var(--bg-elevated); padding: 8px 20px; border-radius: 100px; font-size: 0.8rem; color: var(--primary); display: inline-block; }
+    
+    #contact { padding: 80px 0 90px; }
+    .contact-panel { display: flex; flex-wrap: wrap; gap: 48px; background: var(--bg-card); border-radius: 48px; padding: 48px; border: 1px solid var(--border); }
+    .contact-details { flex: 1.5; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .contact-row { display: flex; align-items: center; gap: 20px; padding: 18px 24px; background: var(--bg-elevated); border-radius: 28px; border: 1px solid var(--border); transition: var(--transition); }
+    .contact-row:hover { transform: translateX(6px); border-color: var(--primary); }
+    .contact-row i { font-size: 2rem; color: var(--primary); width: 50px; }
+    .contact-row div strong { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px; }
+    .contact-row div br + * { color: var(--text-primary); font-size: 0.95rem; }
+    .contact-note { flex: 1; background: linear-gradient(145deg, #121212, #0a0a0a); border-radius: 40px; padding: 38px 32px; text-align: center; border: 1px solid var(--border); }
+    .contact-note i { font-size: 2.8rem; color: var(--primary); margin-bottom: 20px; }
+    .contact-note p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 28px; }
+    .social-icons { display: flex; justify-content: center; gap: 24px; }
+    .social-icons a { background: var(--bg-elevated); width: 48px; height: 48px; border-radius: 60px; display: inline-flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.3rem; border: 1px solid var(--border); text-decoration: none; transition: var(--transition); }
+    .social-icons a:hover { background: var(--primary); color: #0a0a0a; transform: translateY(-5px); }
+    
+    footer { background: #030303; color: var(--text-muted); padding: 40px 0; text-align: center; border-top: 1px solid var(--border); }
+    
+    /* Inline Gallery Modal - FIX for blank page issue */
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #070707;
+      z-index: 10000;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .gallery-modal.active {
+      display: block;
+    }
+    .gallery-modal .gallery-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .gallery-modal .close-modal-btn {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      background: var(--primary);
+      color: #070707;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border: none;
+      z-index: 10001;
+      transition: all 0.3s;
+    }
+    .gallery-modal .close-modal-btn:hover {
+      background: var(--accent);
+      transform: scale(1.1);
+    }
+    .gallery-modal .gallery-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-top: 60px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .gallery-modal .gallery-header h1 {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .gallery-modal .gallery-header p {
+      color: var(--text-secondary);
+      margin-top: 10px;
+    }
+    .gallery-modal .stats {
+      color: var(--primary);
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .gallery-modal .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
+      padding-bottom: 40px;
+    }
+    .gallery-modal .image-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .gallery-modal .image-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-hover);
+    }
+    .gallery-modal .image-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+    .gallery-modal .card-info {
+      padding: 18px;
+    }
+    .gallery-modal .card-info h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--primary);
+      word-break: break-word;
+    }
+    .gallery-modal .card-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .fullscreen-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.96);
+      z-index: 20000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .fullscreen-modal img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 20px;
+      box-shadow: 0 0 50px rgba(0,212,192,0.3);
+    }
+    
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      .hero-name { font-size: 3rem; }
+      .hero-content { flex-direction: column; text-align: center; }
+      .hero-line { margin-left: auto; margin-right: auto; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .btn-group { justify-content: center; }
+      .hero-titles { justify-content: center; }
+      .section-title { display: block; text-align: center; }
+      .section-title::after { left: 50%; transform: translateX(-50%); }
+      .contact-panel { flex-direction: column; padding: 32px; }
+      .image-wrapper { width: 260px; height: 260px; }
+      .samples-header h2 { font-size: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-name { font-size: 2.2rem; }
+      .badge { font-size: 0.7rem; padding: 6px 14px; }
+      .about-card { padding: 28px; }
+      .contact-panel { padding: 24px; }
+      .image-wrapper { width: 200px; height: 200px; }
+      .samples-header h2 { font-size: 1.6rem; }
+      .gallery-modal .image-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    }
+    
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-elevated); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+    section { opacity: 0; animation: fadeInUp 0.6s ease forwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-name">NESHAN<br>SHRESTHA</h1>
+        <div class="hero-titles">
+          <span class="badge"><i class="fas fa-pen-fancy"></i> GRAPHIC DESIGNER</span>
+          <span class="badge"><i class="fas fa-code"></i> FULL STACK DEVELOPER</span>
+        </div>
+        <div class="hero-line"></div>
+        <p class="hero-desc">I design and develop intuitive, modern digital experiences — blending visual storytelling with robust technical performance.</p>
+        <div class="btn-group">
+          <a href="#samples" class="btn btn-primary"><i class="fas fa-palette"></i> VIEW SAMPLES</a>
+          <a href="#contact" class="btn btn-outline"><i class="fas fa-comment"></i> CONTACT ME</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="image-wrapper">
+          <img src="mypic.png" alt="Neshan Shrestha" class="profile-image" onerror="this.src='https://placehold.co/400x400/1a1a1a/00d4c0?text=NS'">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">ABOUT ME</h2>
+    <div class="about-card">
+      <p class="about-text-main">I am a Graphic Designer and Full Stack Developer specializing in creating modern, clean, and functional digital experiences. I design and develop intuitive user interfaces backed by efficient and scalable web solutions, ensuring both visual appeal and strong technical performance.</p>
+      <div class="skills-strip">
+        <span>HTML/CSS</span><span>PHP</span><span>JavaScript</span><span>Adobe PS</span><span>React</span><span>Node.js</span><span>Python</span><span>UI/UX</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="samples" class="samples-section">
+  <div class="container">
+    <div class="samples-header">
+      <h2>🎨 GRAPHIC DESIGN SAMPLES</h2>
+      <p class="samples-subtitle">Click any category to view all your designs — works with ANY image names (no naming restrictions)</p>
+    </div>
+    <div class="samples-grid" id="samplesGrid">
+      <div class="loading-spinner"><i class="fas fa-spinner"></i><p style="margin-top: 15px;">Loading your design gallery...</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <h2 class="section-title">EDUCATION</h2>
+    <div class="edu-grid">
+      <div class="edu-block"><div class="edu-icon"><i class="fas fa-university"></i></div><h3>Kathmandu Business Campus</h3><p class="edu-status">Running</p><p class="edu-detail">Bachelor's Degree in Information Technology</p></div>
+      <div class="edu-block"><div class="edu-icon"><i class="fas fa-school"></i></div><h3>Herald International College</h3><p class="edu-status">+2 Degree (2020-2021) Batch</p><p class="edu-detail">Computer Science</p><p class="edu-gpa">GPA: 3.40</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">MY PROJECTS</h2>
+    <div class="projects-grid">
+      <div class="project-card"><div class="project-icon"><i class="fas fa-camera"></i></div><h3>Photographic Portfolio</h3><p>Immersive gallery & storytelling platform.</p><div class="project-quote">"Visual poetry"</div></div>
+      <div class="project-card"><div class="project-icon"><i class="fas fa-leaf"></i></div><h3>Wholesome goodness</h3><p>Organic cafe brand & menu experience.</p><div class="project-quote">goodness is here</div></div>
+      <div class="project-card"><div class="project-icon"><i class="fas fa-store"></i></div><h3>Our Cafe, Work</h3><p>“Imagine you're the story of more than a successful.”</p><div class="project-quote">About · Work</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">CONTACT ME</h2>
+    <div class="contact-panel">
+      <div class="contact-details">
+        <div class="contact-row"><i class="fas fa-phone-alt"></i><div><strong>PHONE</strong><br>+977 9845059549</div></div>
+        <div class="contact-row"><i class="fas fa-envelope"></i><div><strong>EMAIL</strong><br>Shresthaneshan22@gmail.com</div></div>
+        <div class="contact-row"><i class="fas fa-map-marker-alt"></i><div><strong>ADDRESS</strong><br>Balaju, Kathmandu, Nepal</div></div>
+      </div>
+      <div class="contact-note"><i class="fas fa-hand-peace"></i><p>Open for collaboration & creative work — let's build something amazing.</p><div class="social-icons"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-behance"></i></a></div></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container"><p>© 2025 Neshan Shrestha — Graphic Designer & Full Stack Developer</p></div></footer>
+
+<!-- Inline Gallery Modal (No popup, no blank page) -->
+<div id="galleryModal" class="gallery-modal">
+  <button class="close-modal-btn" onclick="closeGalleryModal()"><i class="fas fa-times"></i></button>
+  <div class="gallery-container">
+    <div class="gallery-header">
+      <h1 id="galleryTitle"></h1>
+      <p id="galleryDesc"></p>
+      <div class="stats" id="galleryStats"></div>
+    </div>
+    <div class="image-grid" id="galleryGrid"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// COMPLETE FIXED VERSION - NO BLANK PAGES, NO about:blank
+// Uses inline modal instead of popup window
+// ============================================================
+
+// Category configuration
+const DESIGN_CATEGORIES = [
+  { id: 1, name: "Poster Design Series", category: "Print & Poster", description: "Creative poster designs for events, music festivals, campaigns, and art exhibitions.", icon: "fa-poster", folder: "poster" },
+  { id: 2, name: "Social Media Graphics", category: "Digital Design", description: "Engaging social media posts, stories, banners, and campaign visuals.", icon: "fa-chart-line", folder: "social" },
+  { id: 3, name: "Packaging Design", category: "Product Design", description: "Creative packaging solutions for products including boxes and labels.", icon: "fa-box", folder: "packaging" },
+  { id: 4, name: "UI/UX Design", category: "Web & App", description: "Modern user interface designs for websites, mobile apps, and dashboards.", icon: "fa-chart-pie", folder: "uiux" }
+];
+
+// ============================================================
+// 📸 ADD YOUR IMAGES HERE - EDIT THIS SECTION
+// ============================================================
+// Just add your image filenames to the arrays below.
+// No naming restrictions! Use any filename you want.
+// Example: "my-awesome-poster.png", "summer-design.jpg", etc.
+// ============================================================
+
+const USER_IMAGES = {
+  poster: [
+    // Add your poster images here
+    // "poster1.png",
+    // "my-cool-design.jpg",
+    // "event-flyer.webp"
+  ],
+  social: [
+    // Add your social media images here
+  ],
+  packaging: [
+    // Add your packaging images here
+  ],
+  uiux: [
+    // Add your UI/UX images here
+  ]
+};
+
+// Helper function to build image URL
+function buildImageUrl(folder, filename) {
+  return `images/${folder}/${filename}`;
+}
+
+// Get images from user configuration
+function getImagesFromConfig(folderName) {
+  const images = [];
+  const imageFiles = USER_IMAGES[folderName] || [];
+  
+  for (let i = 0; i < imageFiles.length; i++) {
+    const filename = imageFiles[i];
+    images.push({
+      id: i + 1,
+      url: buildImageUrl(folderName, filename),
+      title: `${folderName.toUpperCase()} Design ${i + 1}`,
+      description: `Professional ${folderName} design showcase`
+    });
+  }
+  return images;
+}
+
+// Auto-detect images with common patterns
+async function autoDetectImages(folderName, maxTest = 100) {
+  const detectedImages = [];
+  const extensions = ['png', 'jpg', 'jpeg', 'webp', 'gif'];
+  const patterns = [
+    (i) => `${i}`,
+    (i) => `${i}.png`,
+    (i) => `img${i}`,
+    (i) => `image${i}`,
+    (i) => `design_${i}`,
+    (i) => `${folderName}_${i}`,
+    (i) => `${folderName}${i}`,
+  ];
+  
+  for (let i = 1; i <= maxTest; i++) {
+    let found = false;
+    for (const ext of extensions) {
+      for (const pattern of patterns) {
+        const testName = pattern(i);
+        const url = `images/${folderName}/${testName}.${ext}`;
+        const exists = await testImageExists(url);
+        if (exists) {
+          detectedImages.push({
+            id: i,
+            url: url,
+            title: `${folderName.toUpperCase()} Design ${detectedImages.length + 1}`,
+            description: `Professional ${folderName} design`
+          });
+          found = true;
+          break;
+        }
+      }
+      if (found) break;
+    }
+    if (!found && i > 5 && detectedImages.length === 0) break;
+    if (!found && detectedImages.length > 0 && i > detectedImages.length + 5) break;
+  }
+  
+  return detectedImages;
+}
+
+function testImageExists(url) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+}
+
+// Load categories with images
+async function loadCategories() {
+  const categories = [];
+  
+  for (const category of DESIGN_CATEGORIES) {
+    let images = getImagesFromConfig(category.folder);
+    
+    if (images.length === 0) {
+      images = await autoDetectImages(category.folder, 100);
+    }
+    
+    categories.push({
+      ...category,
+      images: images,
+      imageCount: images.length
+    });
+  }
+  
+  return categories;
+}
+
+// Open gallery INLINE (NO popup, NO blank page)
+function openInlineGallery(category) {
+  const images = category.images || [];
+  
+  if (images.length === 0) {
+    alert(`📁 No images found in "${category.folder}" folder.\n\nTo add images:\n\n1. Edit the USER_IMAGES array in the JavaScript section\n\n2. Or place PNG files in: images/${category.folder}/\n\nSupported names: 1.png, 2.png, image1.png, design_1.png, etc.`);
+    return;
+  }
+  
+  // Set gallery content
+  document.getElementById('galleryTitle').innerHTML = `<i class="fas ${category.icon}"></i> ${category.name}`;
+  document.getElementById('galleryDesc').innerHTML = category.description;
+  document.getElementById('galleryStats').innerHTML = `<span><i class="fas fa-images"></i> ${images.length} Design${images.length !== 1 ? 's' : ''}</span><span><i class="fas fa-tag"></i> ${category.category}</span>`;
+  
+  // Render images grid
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = images.map(img => `
+    <div class="image-card" onclick="openFullscreenImage('${img.url}')">
+      <img src="${img.url}" alt="${img.title}" loading="lazy" onerror="this.src='https://placehold.co/800x600/262626/00d4c0?text=Image+Not+Found'">
+      <div class="card-info">
+        <h3><i class="fas fa-image"></i> ${img.title}</h3>
+        <p>${img.description}</p>
+      </div>
+    </div>
+  `).join('');
+  
+  // Show modal
+  document.getElementById('galleryModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGalleryModal() {
+  document.getElementById('galleryModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function openFullscreenImage(url) {
+  const modal = document.createElement('div');
+  modal.className = 'fullscreen-modal';
+  modal.onclick = () => modal.remove();
+  
+  const img = document.createElement('img');
+  img.src = url;
+  
+  modal.appendChild(img);
+  document.body.appendChild(modal);
+}
+
+// Render samples grid on main page
+async function renderSamples() {
+  const grid = document.getElementById('samplesGrid');
+  if (!grid) return;
+  
+  grid.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i><p style="margin-top: 15px;">Loading your designs...</p></div>';
+  
+  const categories = await loadCategories();
+  const hasAnyImages = categories.some(c => c.imageCount > 0);
+  
+  if (!hasAnyImages) {
+    grid.innerHTML = `
+      <div style="grid-column:1/-1; text-align:center; padding:60px; background:var(--bg-card); border-radius:40px; border:1px solid var(--border);">
+        <i class="fas fa-folder-open" style="font-size:64px; color:var(--primary); margin-bottom:20px; display:block;"></i>
+        <h3>📸 Add Your Design Images</h3>
+        <p style="color:var(--text-secondary); margin-top:15px; max-width:550px; margin-left:auto; margin-right:auto;">
+          <strong>Two ways to add your images:</strong><br><br>
+          1️⃣ <strong>Easy way:</strong> Edit the <code style="background:#1a1a1a; padding:2px 6px; border-radius:4px;">USER_IMAGES</code> array in the JavaScript section<br><br>
+          2️⃣ <strong>Auto-detect:</strong> Place PNG files in folders:<br>
+          <code style="background:#1a1a1a; padding:8px 12px; border-radius:8px; display:inline-block; margin-top:10px;">
+          images/poster/ (any filename)<br>
+          images/social/ (any filename)<br>
+          images/packaging/ (any filename)<br>
+          images/uiux/ (any filename)
+          </code>
+        </p>
+        <p style="color:var(--text-muted); margin-top:20px; font-size:0.85rem;">
+          Works with ANY filenames - no naming restrictions!
+        </p>
+      </div>
+    `;
+    return;
+  }
+  
+  grid.innerHTML = categories.map(cat => `
+    <div class="sample-card" onclick="openInlineGallery(${JSON.stringify(cat).replace(/"/g, '&quot;')})">
+      <div class="sample-preview">
+        <i class="fas ${cat.icon}"></i>
+      </div>
+      <div class="sample-info">
+        <h3>${cat.name}</h3>
+        <p>${cat.description.substring(0, 80)}...</p>
+        <span class="sample-stats"><i class="fas fa-images"></i> ${cat.imageCount} design${cat.imageCount !== 1 ? 's' : ''}</span>
+        <button class="view-gallery-btn" onclick="event.stopPropagation(); openInlineGallery(${JSON.stringify(cat).replace(/"/g, '&quot;')})">
+          <i class="fas fa-images"></i> View Gallery (${cat.imageCount} images)
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Make functions globally available
+window.openInlineGallery = openInlineGallery;
+window.closeGalleryModal = closeGalleryModal;
+window.openFullscreenImage = openFullscreenImage;
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', renderSamples);
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeGalleryModal();
+  }
+});
+</script>
+</body>
+</html>
