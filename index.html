@@ -24,159 +24,74 @@
       --transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-primary);
-      line-height: 1.5;
-      scroll-behavior: smooth;
-    }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-primary); line-height: 1.5; scroll-behavior: smooth; overflow-x: hidden; }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
     h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
+    .section-title { font-size: 2.5rem; margin-bottom: 3rem; position: relative; display: inline-block; color: var(--text-primary); }
+    .section-title::after { content: ''; position: absolute; bottom: -12px; left: 0; width: 70px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; transition: var(--transition); }
     
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-      display: inline-block;
-      color: var(--text-primary);
-    }
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -12px;
-      left: 0;
-      width: 70px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: 4px;
-    }
-    
-    .hero {
-      background: radial-gradient(ellipse at 30% 40%, #0d1211 0%, #050505 100%);
-      border-radius: 0 0 64px 64px;
-      padding: 90px 0 80px;
-      border-bottom: 1px solid rgba(0, 212, 192, 0.15);
-    }
-    .hero-content { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 48px; }
+    /* Hero */
+    .hero { background: radial-gradient(ellipse at 30% 40%, #0d1211 0%, #050505 100%); border-radius: 0 0 64px 64px; padding: 90px 0 80px; border-bottom: 1px solid rgba(0,212,192,0.15); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 70%; height: 140%; background: radial-gradient(circle, rgba(0,212,192,0.08) 0%, transparent 70%); pointer-events: none; }
+    .hero-content { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 48px; position: relative; z-index: 2; }
     .hero-text { flex: 1.2; }
-    .hero-name { font-size: 4.5rem; font-weight: 800; line-height: 1.15; margin-bottom: 24px; }
-    .hero-titles { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
-    .badge {
-      background: rgba(0, 212, 192, 0.08);
-      padding: 8px 26px;
-      border-radius: 100px;
-      font-weight: 600;
-      color: var(--primary);
-      border: 1px solid rgba(0, 212, 192, 0.35);
-    }
+    .hero-name { font-size: 4.5rem; font-weight: 800; line-height: 1.15; margin-bottom: 24px; animation: fadeInLeft 0.8s ease; }
+    .hero-titles { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; animation: fadeInLeft 0.8s ease 0.1s backwards; }
+    .badge { background: rgba(0,212,192,0.08); padding: 8px 26px; border-radius: 100px; font-weight: 600; color: var(--primary); border: 1px solid rgba(0,212,192,0.35); transition: var(--transition); cursor: default; }
     .badge i { margin-right: 10px; }
-    .hero-line { width: 70px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); margin-bottom: 32px; }
-    .hero-desc { font-size: 1.2rem; color: var(--text-secondary); max-width: 560px; margin-bottom: 40px; }
-    .btn-group { display: flex; gap: 20px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 34px;
-      border-radius: 100px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transition);
-    }
+    .badge:hover { background: rgba(0,212,192,0.2); transform: translateY(-3px); border-color: var(--primary); }
+    .hero-line { width: 70px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); margin-bottom: 32px; border-radius: 3px; animation: fadeInLeft 0.8s ease 0.2s backwards; }
+    .hero-desc { font-size: 1.2rem; color: var(--text-secondary); max-width: 560px; margin-bottom: 40px; animation: fadeInLeft 0.8s ease 0.3s backwards; }
+    .btn-group { display: flex; gap: 20px; flex-wrap: wrap; animation: fadeInLeft 0.8s ease 0.4s backwards; }
+    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 12px 34px; border-radius: 100px; font-weight: 600; text-decoration: none; transition: var(--transition); cursor: pointer; }
     .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #070707; }
-    .btn-primary:hover { transform: translateY(-4px); }
+    .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,212,192,0.3); }
     .btn-outline { background: transparent; border: 1.5px solid var(--primary); color: var(--primary); }
-    .btn-outline:hover { background: rgba(0, 212, 192, 0.1); transform: translateY(-4px); }
-    .hero-visual { flex: 0.8; display: flex; justify-content: center; }
-    .image-wrapper {
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      padding: 3px;
-      box-shadow: var(--shadow-md);
-    }
+    .btn-outline:hover { background: rgba(0,212,192,0.1); transform: translateY(-4px); }
+    .hero-visual { flex: 0.8; display: flex; justify-content: center; animation: fadeInRight 0.8s ease; }
+    .image-wrapper { width: 320px; height: 320px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); padding: 3px; box-shadow: var(--shadow-md); transition: var(--transition); }
+    .image-wrapper:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0,212,192,0.3); }
     .profile-image { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: var(--bg-card); }
     
-    .samples-section { padding: 80px 0; }
-    .samples-header { text-align: center; margin-bottom: 50px; }
-    .samples-header h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      margin-bottom: 15px;
-    }
-    .samples-subtitle { color: var(--text-secondary); font-size: 1rem; text-align: center; max-width: 600px; margin: 0 auto; }
-    .samples-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; margin-top: 40px; }
-    .sample-card {
-      background: var(--bg-card);
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    .sample-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: var(--shadow-hover); }
-    .sample-preview {
-      height: 200px;
-      background: linear-gradient(145deg, var(--bg-elevated), #121212);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .sample-preview i { font-size: 65px; color: var(--primary); transition: var(--transition); }
-    .sample-card:hover .sample-preview i { transform: scale(1.1); text-shadow: 0 0 20px var(--primary); }
-    .sample-info { padding: 28px; text-align: center; }
-    .sample-info h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--text-primary); }
-    .sample-info p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px; line-height: 1.5; }
-    .sample-stats {
-      display: inline-block;
-      background: rgba(0, 212, 192, 0.1);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      color: var(--primary);
-      border: 1px solid rgba(0, 212, 192, 0.3);
-      margin-bottom: 16px;
-    }
-    .view-gallery-btn {
-      margin-top: 8px;
-      background: transparent;
-      border: 1px solid var(--primary);
-      color: var(--primary);
-      padding: 10px 24px;
-      border-radius: 100px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition: var(--transition);
-    }
+    /* Work Experience Section */
+    .experience-section { padding: 80px 0; background: radial-gradient(ellipse at center, #0a0c0b 0%, #050505 100%); }
+    .experience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; margin-top: 40px; }
+    .experience-card { background: var(--bg-card); border-radius: 28px; overflow: hidden; border: 1px solid var(--border); transition: var(--transition); animation: fadeInUp 0.6s ease backwards; cursor: pointer; }
+    .experience-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: var(--shadow-hover); }
+    .exp-image { height: 200px; overflow: hidden; background: linear-gradient(145deg, var(--bg-elevated), #121212); display: flex; align-items: center; justify-content: center; }
+    .exp-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+    .experience-card:hover .exp-image img { transform: scale(1.08); }
+    .exp-image i { font-size: 65px; color: var(--primary); transition: var(--transition); }
+    .exp-info { padding: 28px; }
+    .exp-info h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    .exp-company { color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .exp-date { color: var(--accent); font-size: 0.8rem; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .exp-description { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .exp-skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+    .exp-skills span { background: rgba(0,212,192,0.1); padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; color: var(--primary); border: 1px solid rgba(0,212,192,0.2); }
+    .view-details-btn { margin-top: 20px; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 8px 20px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; cursor: pointer; width: 100%; transition: var(--transition); }
+    .view-details-btn:hover { background: var(--primary); color: #070707; }
+    
+    /* Other Sections */
+    .certs-section, .projects-section, .samples-section { padding: 80px 0; }
+    .certs-grid, .projects-grid, .samples-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; margin-top: 40px; }
+    .certs-card, .project-card, .sample-card { background: var(--bg-card); border-radius: 28px; overflow: hidden; border: 1px solid var(--border); transition: var(--transition); cursor: pointer; animation: fadeInUp 0.6s ease backwards; }
+    .certs-card:hover, .project-card:hover, .sample-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: var(--shadow-hover); }
+    .certs-image, .project-image, .sample-preview { height: 200px; background: linear-gradient(145deg, var(--bg-elevated), #121212); display: flex; align-items: center; justify-content: center; }
+    .certs-image i, .project-image i, .sample-preview i { font-size: 65px; color: var(--primary); transition: var(--transition); }
+    .certs-info, .project-info, .sample-info { padding: 28px; text-align: center; }
+    .certs-info h3, .project-info h3, .sample-info h3 { font-size: 1.4rem; margin-bottom: 12px; }
+    .certs-desc, .project-desc { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+    .project-tech, .exp-skills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 15px; }
+    .project-tech span, .exp-skills span { background: rgba(0,212,192,0.1); padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; color: var(--primary); }
+    .sample-stats { display: inline-block; background: rgba(0,212,192,0.1); padding: 6px 16px; border-radius: 100px; font-size: 0.75rem; color: var(--primary); margin-bottom: 16px; }
+    .view-gallery-btn { margin-top: 8px; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 10px 24px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; cursor: pointer; width: 100%; transition: var(--transition); }
     .view-gallery-btn:hover { background: var(--primary); color: #0a0a0a; }
     
-    .loading-spinner { text-align: center; padding: 60px; color: var(--primary); }
-    .loading-spinner i { font-size: 48px; animation: spin 1s linear infinite; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    
+    /* Education */
     #education { background: radial-gradient(ellipse at center, #0a0c0b 0%, #050505 100%); padding: 80px 0 90px; }
     .edu-grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
-    .edu-block {
-      flex: 1;
-      min-width: 280px;
-      background: var(--bg-card);
-      padding: 48px 32px;
-      border-radius: 40px;
-      text-align: center;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
+    .edu-block { flex: 1; min-width: 280px; background: var(--bg-card); padding: 48px 32px; border-radius: 40px; text-align: center; border: 1px solid var(--border); transition: var(--transition); position: relative; overflow: hidden; }
     .edu-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.4s ease; }
     .edu-block:hover::before { transform: scaleX(1); }
     .edu-block:hover { transform: translateY(-8px); border-color: var(--primary); }
@@ -186,542 +101,343 @@
     .edu-detail { color: var(--text-secondary); font-size: 0.9rem; }
     .edu-gpa { color: var(--primary); font-weight: 600; margin-top: 8px; }
     
+    /* About */
     #about { padding: 80px 0; }
-    .about-card { background: rgba(15, 15, 15, 0.8); padding: 52px; border-radius: 40px; border: 1px solid var(--border); transition: var(--transition); }
+    .about-card { background: rgba(15,15,15,0.8); padding: 52px; border-radius: 40px; border: 1px solid var(--border); transition: var(--transition); }
     .about-card:hover { border-color: var(--primary); transform: translateY(-5px); }
     .about-text-main { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 36px; }
     .skills-strip { display: flex; flex-wrap: wrap; gap: 12px; }
-    .skills-strip span { background: var(--bg-elevated); padding: 8px 22px; border-radius: 100px; font-size: 0.85rem; color: var(--primary); border: 1px solid var(--border); }
+    .skills-strip span { background: var(--bg-elevated); padding: 8px 22px; border-radius: 100px; font-size: 0.85rem; color: var(--primary); border: 1px solid var(--border); transition: var(--transition); cursor: default; }
+    .skills-strip span:hover { background: var(--primary); color: #070707; transform: translateY(-3px); }
     
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; padding: 20px 0 60px; }
-    .project-card { background: var(--bg-card); border-radius: 28px; padding: 38px 28px; text-align: center; border: 1px solid var(--border); transition: var(--transition); }
-    .project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
-    .project-icon { width: 90px; height: 90px; background: var(--bg-elevated); border-radius: 30px; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; border: 1px solid var(--border); }
-    .project-icon i { font-size: 44px; color: var(--primary); }
-    .project-card h3 { font-size: 1.5rem; margin-bottom: 16px; }
-    .project-card p { color: var(--text-secondary); margin-bottom: 20px; }
-    .project-quote { background: var(--bg-elevated); padding: 8px 20px; border-radius: 100px; font-size: 0.8rem; color: var(--primary); display: inline-block; }
-    
+    /* Contact */
     #contact { padding: 80px 0 90px; }
-    .contact-panel { display: flex; flex-wrap: wrap; gap: 48px; background: var(--bg-card); border-radius: 48px; padding: 48px; border: 1px solid var(--border); }
+    .contact-panel { display: flex; flex-wrap: wrap; gap: 48px; background: var(--bg-card); border-radius: 48px; padding: 48px; border: 1px solid var(--border); transition: var(--transition); }
+    .contact-panel:hover { border-color: var(--primary); }
     .contact-details { flex: 1.5; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
     .contact-row { display: flex; align-items: center; gap: 20px; padding: 18px 24px; background: var(--bg-elevated); border-radius: 28px; border: 1px solid var(--border); transition: var(--transition); }
-    .contact-row:hover { transform: translateX(6px); border-color: var(--primary); }
+    .contact-row:hover { transform: translateX(8px); border-color: var(--primary); background: rgba(0,212,192,0.05); }
     .contact-row i { font-size: 2rem; color: var(--primary); width: 50px; }
     .contact-row div strong { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px; }
-    .contact-row div br + * { color: var(--text-primary); font-size: 0.95rem; }
     .contact-note { flex: 1; background: linear-gradient(145deg, #121212, #0a0a0a); border-radius: 40px; padding: 38px 32px; text-align: center; border: 1px solid var(--border); }
     .contact-note i { font-size: 2.8rem; color: var(--primary); margin-bottom: 20px; }
     .contact-note p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 28px; }
     .social-icons { display: flex; justify-content: center; gap: 24px; }
     .social-icons a { background: var(--bg-elevated); width: 48px; height: 48px; border-radius: 60px; display: inline-flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.3rem; border: 1px solid var(--border); text-decoration: none; transition: var(--transition); }
-    .social-icons a:hover { background: var(--primary); color: #0a0a0a; transform: translateY(-5px); }
-    
+    .social-icons a:hover { background: var(--primary); color: #0a0a0a; transform: translateY(-6px); }
     footer { background: #030303; color: var(--text-muted); padding: 40px 0; text-align: center; border-top: 1px solid var(--border); }
     
-    /* Inline Gallery Modal - FIX for blank page issue */
-    .gallery-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #070707;
-      z-index: 10000;
-      overflow-y: auto;
-      padding: 20px;
-    }
-    .gallery-modal.active {
-      display: block;
-    }
-    .gallery-modal .gallery-container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .gallery-modal .close-modal-btn {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      background: var(--primary);
-      color: #070707;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      cursor: pointer;
-      border: none;
-      z-index: 10001;
-      transition: all 0.3s;
-    }
-    .gallery-modal .close-modal-btn:hover {
-      background: var(--accent);
-      transform: scale(1.1);
-    }
-    .gallery-modal .gallery-header {
-      text-align: center;
-      margin-bottom: 40px;
-      padding-top: 60px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-    .gallery-modal .gallery-header h1 {
-      font-size: 2.2rem;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .gallery-modal .gallery-header p {
-      color: var(--text-secondary);
-      margin-top: 10px;
-    }
-    .gallery-modal .stats {
-      color: var(--primary);
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .gallery-modal .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 25px;
-      padding-bottom: 40px;
-    }
-    .gallery-modal .image-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .gallery-modal .image-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow-hover);
-    }
-    .gallery-modal .image-card img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-    }
-    .gallery-modal .card-info {
-      padding: 18px;
-    }
-    .gallery-modal .card-info h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
-      color: var(--primary);
-      word-break: break-word;
-    }
-    .gallery-modal .card-info p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .fullscreen-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.96);
-      z-index: 20000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-    .fullscreen-modal img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 20px;
-      box-shadow: 0 0 50px rgba(0,212,192,0.3);
-    }
+    /* Detail Page Modal */
+    .detail-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #070707; z-index: 10000; overflow-y: auto; padding: 20px; }
+    .detail-modal.active { display: block; animation: fadeIn 0.3s ease; }
+    .detail-container { max-width: 1000px; margin: 0 auto; background: var(--bg-card); border-radius: 48px; overflow: hidden; border: 1px solid var(--border); }
+    .detail-header { background: linear-gradient(135deg, var(--primary), var(--accent)); padding: 50px 40px; text-align: center; }
+    .detail-header h2 { font-size: 2.5rem; color: #070707; margin-bottom: 10px; }
+    .detail-header .company { font-size: 1.2rem; color: #070707; opacity: 0.9; }
+    .detail-body { padding: 40px; }
+    .detail-section { margin-bottom: 30px; }
+    .detail-section h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+    .detail-section p { color: var(--text-secondary); line-height: 1.7; }
+    .detail-images { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+    .detail-img-card { background: var(--bg-elevated); border-radius: 20px; overflow: hidden; cursor: pointer; transition: var(--transition); border: 1px solid var(--border); }
+    .detail-img-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .detail-img-card img { width: 100%; height: 200px; object-fit: cover; }
+    .detail-img-card .img-caption { padding: 12px; text-align: center; color: var(--text-secondary); font-size: 0.8rem; }
+    .close-detail { position: fixed; top: 20px; right: 30px; background: var(--primary); color: #070707; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; border: none; z-index: 10001; transition: var(--transition); }
+    .close-detail:hover { background: var(--accent); transform: scale(1.1) rotate(90deg); }
+    .skill-tag { display: inline-block; background: rgba(0,212,192,0.15); padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; color: var(--primary); margin: 5px; }
     
-    @media (max-width: 900px) {
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    @media (max-width: 768px) {
       .container { padding: 0 24px; }
-      .hero-name { font-size: 3rem; }
+      .hero-name { font-size: 2.8rem; }
       .hero-content { flex-direction: column; text-align: center; }
-      .hero-line { margin-left: auto; margin-right: auto; }
-      .hero-desc { margin-left: auto; margin-right: auto; }
-      .btn-group { justify-content: center; }
-      .hero-titles { justify-content: center; }
-      .section-title { display: block; text-align: center; }
-      .section-title::after { left: 50%; transform: translateX(-50%); }
-      .contact-panel { flex-direction: column; padding: 32px; }
-      .image-wrapper { width: 260px; height: 260px; }
-      .samples-header h2 { font-size: 2rem; }
+      .section-title { font-size: 1.8rem; display: block; text-align: center; }
+      .section-title::after { left: 50%; transform: translateX(-50%); width: 60px; }
+      .image-wrapper { width: 220px; height: 220px; }
+      .detail-header h2 { font-size: 1.5rem; }
+      .detail-body { padding: 24px; }
+      .detail-images { grid-template-columns: 1fr; }
     }
-    @media (max-width: 600px) {
-      .hero-name { font-size: 2.2rem; }
+    @media (max-width: 480px) {
+      .hero-name { font-size: 2rem; }
       .badge { font-size: 0.7rem; padding: 6px 14px; }
-      .about-card { padding: 28px; }
-      .contact-panel { padding: 24px; }
-      .image-wrapper { width: 200px; height: 200px; }
-      .samples-header h2 { font-size: 1.6rem; }
-      .gallery-modal .image-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
     }
-    
     ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-elevated); }
-    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+    ::-webkit-scrollbar-track { background: #161616; }
+    ::-webkit-scrollbar-thumb { background: #00d4c0; border-radius: 4px; }
     section { opacity: 0; animation: fadeInUp 0.6s ease forwards; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="hero-name">NESHAN<br>SHRESTHA</h1>
-        <div class="hero-titles">
-          <span class="badge"><i class="fas fa-pen-fancy"></i> GRAPHIC DESIGNER</span>
-          <span class="badge"><i class="fas fa-code"></i> FULL STACK DEVELOPER</span>
-        </div>
-        <div class="hero-line"></div>
-        <p class="hero-desc">I design and develop intuitive, modern digital experiences — blending visual storytelling with robust technical performance.</p>
-        <div class="btn-group">
-          <a href="#samples" class="btn btn-primary"><i class="fas fa-palette"></i> VIEW SAMPLES</a>
-          <a href="#contact" class="btn btn-outline"><i class="fas fa-comment"></i> CONTACT ME</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="image-wrapper">
-          <img src="mypic.png" alt="Neshan Shrestha" class="profile-image" onerror="this.src='https://placehold.co/400x400/1a1a1a/00d4c0?text=NS'">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="hero"><div class="container"><div class="hero-content"><div class="hero-text"><h1 class="hero-name">NESHAN<br>SHRESTHA</h1><div class="hero-titles"><span class="badge"><i class="fas fa-pen-fancy"></i> GRAPHIC DESIGNER</span><span class="badge"><i class="fas fa-code"></i> FULL STACK DEVELOPER</span></div><div class="hero-line"></div><p class="hero-desc">I design and develop intuitive, modern digital experiences — blending visual storytelling with robust technical performance.</p><div class="btn-group"><a href="#samples" class="btn btn-primary"><i class="fas fa-palette"></i> VIEW SAMPLES</a><a href="#contact" class="btn btn-outline"><i class="fas fa-comment"></i> CONTACT ME</a></div></div><div class="hero-visual"><div class="image-wrapper"><img src="mypic.png" alt="Neshan" class="profile-image" onerror="this.src='https://placehold.co/400x400/1a1a1a/00d4c0?text=NS'"></div></div></div></div></div>
 
-<section id="about">
-  <div class="container">
-    <h2 class="section-title">ABOUT ME</h2>
-    <div class="about-card">
-      <p class="about-text-main">I am a Graphic Designer and Full Stack Developer specializing in creating modern, clean, and functional digital experiences. I design and develop intuitive user interfaces backed by efficient and scalable web solutions, ensuring both visual appeal and strong technical performance.</p>
-      <div class="skills-strip">
-        <span>HTML/CSS</span><span>PHP</span><span>JavaScript</span><span>Adobe PS</span><span>React</span><span>Node.js</span><span>Python</span><span>UI/UX</span>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="about"><div class="container"><h2 class="section-title">ABOUT ME</h2><div class="about-card"><p class="about-text-main">I am a Graphic Designer and Full Stack Developer specializing in creating modern, clean, and functional digital experiences. I design and develop intuitive user interfaces backed by efficient and scalable web solutions, ensuring both visual appeal and strong technical performance.</p><div class="skills-strip"><span>HTML/CSS</span><span>PHP</span><span>JavaScript</span><span>Adobe PS</span><span>React</span><span>Node.js</span><span>UI/UX</span></div></div></div></section>
 
-<section id="samples" class="samples-section">
-  <div class="container">
-    <div class="samples-header">
-      <h2>🎨 GRAPHIC DESIGN SAMPLES</h2>
-      <p class="samples-subtitle">Click any category to view all your designs — works with ANY image names (no naming restrictions)</p>
-    </div>
-    <div class="samples-grid" id="samplesGrid">
-      <div class="loading-spinner"><i class="fas fa-spinner"></i><p style="margin-top: 15px;">Loading your design gallery...</p></div>
-    </div>
-  </div>
-</section>
+<!-- WORK EXPERIENCE SECTION - CLICKABLE -->
+<section class="experience-section"><div class="container"><h2 class="section-title">💼 WORK EXPERIENCE</h2><div class="experience-grid" id="experienceGrid"></div></div></section>
 
-<section id="education">
-  <div class="container">
-    <h2 class="section-title">EDUCATION</h2>
-    <div class="edu-grid">
-      <div class="edu-block"><div class="edu-icon"><i class="fas fa-university"></i></div><h3>Kathmandu Business Campus</h3><p class="edu-status">Running</p><p class="edu-detail">Bachelor's Degree in Information Technology</p></div>
-      <div class="edu-block"><div class="edu-icon"><i class="fas fa-school"></i></div><h3>Herald International College</h3><p class="edu-status">+2 Degree (2020-2021) Batch</p><p class="edu-detail">Computer Science</p><p class="edu-gpa">GPA: 3.40</p></div>
-    </div>
-  </div>
-</section>
+<section class="certs-section"><div class="container"><h2 class="section-title">📜 CERTIFICATIONS</h2><div class="certs-grid" id="certsGrid"></div></div></section>
 
-<section id="projects">
-  <div class="container">
-    <h2 class="section-title">MY PROJECTS</h2>
-    <div class="projects-grid">
-      <div class="project-card"><div class="project-icon"><i class="fas fa-camera"></i></div><h3>Photographic Portfolio</h3><p>Immersive gallery & storytelling platform.</p><div class="project-quote">"Visual poetry"</div></div>
-      <div class="project-card"><div class="project-icon"><i class="fas fa-leaf"></i></div><h3>Wholesome goodness</h3><p>Organic cafe brand & menu experience.</p><div class="project-quote">goodness is here</div></div>
-      <div class="project-card"><div class="project-icon"><i class="fas fa-store"></i></div><h3>Our Cafe, Work</h3><p>“Imagine you're the story of more than a successful.”</p><div class="project-quote">About · Work</div></div>
-    </div>
-  </div>
-</section>
+<section class="projects-section"><div class="container"><h2 class="section-title">🚀 MY PROJECTS</h2><div class="projects-grid" id="projectsGrid"></div></div></section>
 
-<section id="contact">
-  <div class="container">
-    <h2 class="section-title">CONTACT ME</h2>
-    <div class="contact-panel">
-      <div class="contact-details">
-        <div class="contact-row"><i class="fas fa-phone-alt"></i><div><strong>PHONE</strong><br>+977 9845059549</div></div>
-        <div class="contact-row"><i class="fas fa-envelope"></i><div><strong>EMAIL</strong><br>Shresthaneshan22@gmail.com</div></div>
-        <div class="contact-row"><i class="fas fa-map-marker-alt"></i><div><strong>ADDRESS</strong><br>Balaju, Kathmandu, Nepal</div></div>
-      </div>
-      <div class="contact-note"><i class="fas fa-hand-peace"></i><p>Open for collaboration & creative work — let's build something amazing.</p><div class="social-icons"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-behance"></i></a></div></div>
-    </div>
-  </div>
-</section>
+<section class="samples-section"><div class="container"><div class="samples-header"><h2>🎨 GRAPHIC DESIGN SAMPLES</h2><p class="samples-subtitle" style="color:#c0c0c0; text-align:center;">Click any category to view designs</p></div><div class="samples-grid" id="samplesGrid"></div></div></section>
+
+<section id="education"><div class="container"><h2 class="section-title">EDUCATION</h2><div class="edu-grid"><div class="edu-block"><div class="edu-icon"><i class="fas fa-university"></i></div><h3>Kathmandu Business Campus</h3><p class="edu-status">Running</p><p class="edu-detail">Bachelor's in Computer Application (BCA)</p></div><div class="edu-block"><div class="edu-icon"><i class="fas fa-school"></i></div><h3>Herald International College</h3><p class="edu-status">+2 Degree (2020-2021)</p><p class="edu-detail">Computer Science</p><p class="edu-gpa">GPA: 3.40</p></div></div></div></section>
+
+<section id="contact"><div class="container"><h2 class="section-title">CONTACT ME</h2><div class="contact-panel"><div class="contact-details"><div class="contact-row"><i class="fas fa-phone-alt"></i><div><strong>PHONE</strong><br>+977 9845059549</div></div><div class="contact-row"><i class="fas fa-envelope"></i><div><strong>EMAIL</strong><br>Shresthaneshan22@gmail.com</div></div><div class="contact-row"><i class="fas fa-map-marker-alt"></i><div><strong>ADDRESS</strong><br>Balaju, Kathmandu, Nepal</div></div></div><div class="contact-note"><i class="fas fa-hand-peace"></i><p>Open for collaboration — let's build something amazing.</p><div class="social-icons"><a href="https://github.com/NeshanShrestha8848" target="_blank"><i class="fab fa-github"></i></a><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></div></div></div></div></section>
 
 <footer><div class="container"><p>© 2025 Neshan Shrestha — Graphic Designer & Full Stack Developer</p></div></footer>
 
-<!-- Inline Gallery Modal (No popup, no blank page) -->
-<div id="galleryModal" class="gallery-modal">
-  <button class="close-modal-btn" onclick="closeGalleryModal()"><i class="fas fa-times"></i></button>
-  <div class="gallery-container">
-    <div class="gallery-header">
-      <h1 id="galleryTitle"></h1>
-      <p id="galleryDesc"></p>
-      <div class="stats" id="galleryStats"></div>
-    </div>
-    <div class="image-grid" id="galleryGrid"></div>
-  </div>
-</div>
+<!-- Detail Modal for Work Experience -->
+<div id="detailModal" class="detail-modal"><button class="close-detail" onclick="closeDetailModal()"><i class="fas fa-times"></i></button><div class="detail-container" id="detailContainer"></div></div>
+
+<!-- Gallery Modal -->
+<div id="galleryModal" class="detail-modal"><button class="close-detail" onclick="closeModal('galleryModal')"><i class="fas fa-times"></i></button><div class="detail-container"><div class="detail-header"><h2 id="galleryTitle"></h2><p id="galleryDesc"></p></div><div class="detail-body"><div class="gallery-grid" id="galleryGrid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px;"></div></div></div></div>
 
 <script>
 // ============================================================
-// COMPLETE FIXED VERSION - NO BLANK PAGES, NO about:blank
-// Uses inline modal instead of popup window
+// WORK EXPERIENCE DATA - CLICKABLE WITH FULL DETAILS & PICTURES
 // ============================================================
-
-// Category configuration
-const DESIGN_CATEGORIES = [
-  { id: 1, name: "Poster Design Series", category: "Print & Poster", description: "Creative poster designs for events, music festivals, campaigns, and art exhibitions.", icon: "fa-poster", folder: "poster" },
-  { id: 2, name: "Social Media Graphics", category: "Digital Design", description: "Engaging social media posts, stories, banners, and campaign visuals.", icon: "fa-chart-line", folder: "social" },
-  { id: 3, name: "Packaging Design", category: "Product Design", description: "Creative packaging solutions for products including boxes and labels.", icon: "fa-box", folder: "packaging" },
-  { id: 4, name: "UI/UX Design", category: "Web & App", description: "Modern user interface designs for websites, mobile apps, and dashboards.", icon: "fa-chart-pie", folder: "uiux" }
+const WORK_EXPERIENCES = [
+  {
+    id: 1,
+    title: "Graphic Designer",
+    company: "Guntabya Technologies",
+    date: "Jan 2025 – Jan 2026",
+    shortDesc: "Graphic Designer, Video Editor & Social Media Handler. Designed creative graphics, edited promotional videos, managed social media content.",
+    fullDesc: "As a Graphic Designer at Guntabya Technologies, I was responsible for creating visually compelling graphics for digital marketing campaigns. I edited promotional videos using professional tools, ensuring brand consistency across all platforms. I also managed social media content strategy, growing engagement by 40% within 6 months. I collaborated with the marketing team to design eye-catching social media posts, banners, and advertisements that increased brand visibility.",
+    skills: ["Adobe Photoshop", "Canva", "Capcut Pro", "Premiere Pro", "Social Media Management"],
+    achievements: [
+      "Increased social media engagement by 40%",
+      "Designed 50+ marketing materials",
+      "Edited 30+ promotional videos"
+    ],
+    images: [
+      "images/experience/work1.png",
+      "images/experience/work2.png",
+      "images/experience/work3.png"
+    ]
+  }
 ];
 
-// ============================================================
-// 📸 ADD YOUR IMAGES HERE - EDIT THIS SECTION
-// ============================================================
-// Just add your image filenames to the arrays below.
-// No naming restrictions! Use any filename you want.
-// Example: "my-awesome-poster.png", "summer-design.jpg", etc.
-// ============================================================
+// Certifications Data
+const CERTIFICATIONS = [
+  {
+    id: 1,
+    title: "IT Essentials: PC Hardware and Software",
+    organization: "Cisco Networking Academy",
+    date: "28 Apr 2023",
+    description: "Completed comprehensive training in computer hardware, operating systems, software installation, troubleshooting, networking fundamentals, and IT support skills. Gained practical knowledge in assembling PCs, diagnosing system issues, and maintaining computer systems.",
+    image: "images/certs/cisco.png"
+  },
 
-const USER_IMAGES = {
-  poster: [
-    // Add your poster images here
-    // "poster1.png",
-    // "my-cool-design.jpg",
-    // "event-flyer.webp"
-  ],
-  social: [
-    // Add your social media images here
-  ],
-  packaging: [
-    // Add your packaging images here
-  ],
-  uiux: [
-    // Add your UI/UX images here
-  ]
-};
+  {
+    id: 2,
+    title: "Digital Marketing Course",
+    organization: "cODEIT",
+    date: "27 Mar 2026",
+    description: "Completed comprehensive training in digital marketing, covering SEO, social media marketing, email marketing, content strategy, Google Ads, website management using WordPress, web analytics, and campaign optimization. Gained practical experience through real-world projects and marketing campaigns.",
+    image: "images/certs/codeit.png"
+  }
+];
 
-// Helper function to build image URL
-function buildImageUrl(folder, filename) {
-  return `images/${folder}/${filename}`;
-}
+// Projects Data
+const PROJECTS = [
+  { id: 1, title: "Dupche Pharmacy", tech: ["HTML","php","mysql", "JS","CSS"], description: "Immersive gallery with lightbox, animations, responsive design.", github: "https://github.com/NeshanShrestha8848/Pharmacy", live: "#", fullDesc: "Designed and developed a pharmacy application featuring appointment scheduling, medicine ordering, and promotional offer management. The platform enhances customer convenience by providing easy access to healthcare products and services through a streamlined digital experience." },
+  { id: 2, title: "Luxlife Furniture E-Commerce ", tech: ["Html", "Php","JS" ,"css","mysql"], description: "Modern Furniture  e-commerce with cart, payments, and customize design ordering.", github: "https://github.com/NeshanShrestha8848/luxlife-db", live: "#", fullDesc: "Full-stack e-commerce application with Customize order facility and modern add to cart functionality." },
+  { id: 3, title: "Primestate a realstate", tech: ["React", "SCSS", "EXPRESSJS", "NODEJS","MONGODB"], description: "Modern real estate PLatform.", github: "https://github.com/NeshanShrestha8848/Primestates", live: "#", fullDesc: "Modern real estate platform with responsive design and interactive features LIKE property search and Chat With Owner." }
+];
 
-// Get images from user configuration
-function getImagesFromConfig(folderName) {
+// Design Categories
+const DESIGN_CATEGORIES = [
+  { id: 1, name: "Poster Design Series", category: "Print", icon: "fa-poster", folder: "poster" },
+  { id: 2, name: "Social Media Graphics", category: "Digital", icon: "fa-chart-line", folder: "social" },
+  { id: 3, name: "Packaging Design", category: "Product", icon: "fa-box", folder: "packaging" },
+  { id: 4, name: "UI/UX Design", category: "Web", icon: "fa-chart-pie", folder: "uiux" }
+];
+
+// Helper Functions
+function testImage(url) { return new Promise(resolve => { const img = new Image(); img.onload = () => resolve(true); img.onerror = () => resolve(false); img.src = url; }); }
+
+async function detectImagesInFolder(folderName) {
   const images = [];
-  const imageFiles = USER_IMAGES[folderName] || [];
-  
-  for (let i = 0; i < imageFiles.length; i++) {
-    const filename = imageFiles[i];
-    images.push({
-      id: i + 1,
-      url: buildImageUrl(folderName, filename),
-      title: `${folderName.toUpperCase()} Design ${i + 1}`,
-      description: `Professional ${folderName} design showcase`
-    });
+  const extensions = ['png', 'jpg', 'jpeg', 'webp', 'gif'];
+  let foundCount = 0;
+  for (let i = 1; i <= 500; i++) {
+    let found = false;
+    for (const ext of extensions) {
+      const url = `images/${folderName}/${i}.${ext}`;
+      const exists = await testImage(url);
+      if (exists) {
+        images.push({ id: i, url: url, title: `${folderName.toUpperCase()} Design ${i}` });
+        foundCount++;
+        found = true;
+        break;
+      }
+    }
+    if (!found && i > 5 && foundCount === 0) break;
+    if (!found && foundCount > 0 && i > foundCount + 10) break;
   }
   return images;
 }
 
-// Auto-detect images with common patterns
-async function autoDetectImages(folderName, maxTest = 100) {
-  const detectedImages = [];
-  const extensions = ['png', 'jpg', 'jpeg', 'webp', 'gif'];
-  const patterns = [
-    (i) => `${i}`,
-    (i) => `${i}.png`,
-    (i) => `img${i}`,
-    (i) => `image${i}`,
-    (i) => `design_${i}`,
-    (i) => `${folderName}_${i}`,
-    (i) => `${folderName}${i}`,
-  ];
-  
-  for (let i = 1; i <= maxTest; i++) {
-    let found = false;
-    for (const ext of extensions) {
-      for (const pattern of patterns) {
-        const testName = pattern(i);
-        const url = `images/${folderName}/${testName}.${ext}`;
-        const exists = await testImageExists(url);
-        if (exists) {
-          detectedImages.push({
-            id: i,
-            url: url,
-            title: `${folderName.toUpperCase()} Design ${detectedImages.length + 1}`,
-            description: `Professional ${folderName} design`
-          });
-          found = true;
-          break;
-        }
-      }
-      if (found) break;
-    }
-    if (!found && i > 5 && detectedImages.length === 0) break;
-    if (!found && detectedImages.length > 0 && i > detectedImages.length + 5) break;
-  }
-  
-  return detectedImages;
-}
-
-function testImageExists(url) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => resolve(true);
-    img.onerror = () => resolve(false);
-    img.src = url;
-  });
-}
-
-// Load categories with images
 async function loadCategories() {
   const categories = [];
-  
-  for (const category of DESIGN_CATEGORIES) {
-    let images = getImagesFromConfig(category.folder);
-    
-    if (images.length === 0) {
-      images = await autoDetectImages(category.folder, 100);
-    }
-    
-    categories.push({
-      ...category,
-      images: images,
-      imageCount: images.length
-    });
+  for (const cat of DESIGN_CATEGORIES) {
+    const images = await detectImagesInFolder(cat.folder);
+    categories.push({ ...cat, images, imageCount: images.length });
   }
-  
   return categories;
 }
 
-// Open gallery INLINE (NO popup, NO blank page)
-function openInlineGallery(category) {
-  const images = category.images || [];
+function closeModal(modalId) { document.getElementById(modalId).classList.remove('active'); document.body.style.overflow = ''; }
+function closeDetailModal() { document.getElementById('detailModal').classList.remove('active'); document.body.style.overflow = ''; }
+function openFullscreen(imgSrc) { const div = document.createElement('div'); div.className = 'fullscreen-modal'; div.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.96);z-index:20000;display:flex;justify-content:center;align-items:center;cursor:pointer;'; div.onclick = () => div.remove(); const img = document.createElement('img'); img.src = imgSrc; img.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:20px;'; div.appendChild(img); document.body.appendChild(div); document.body.style.overflow = 'hidden'; div.onclick = () => { div.remove(); document.body.style.overflow = ''; }; }
+
+// Open Work Experience Detail Page
+function openExperienceDetail(exp) {
+  const container = document.getElementById('detailContainer');
+  const imagesHtml = exp.images && exp.images.length > 0 ? 
+    `<div class="detail-images">${exp.images.map(img => `<div class="detail-img-card" onclick="openFullscreen('${img}')"><img src="${img}" onerror="this.src='https://placehold.co/800x600/262626/00d4c0?text=Image'"><div class="img-caption">Work Sample</div></div>`).join('')}</div>` :
+    '<p style="color:#7a7a7a;">No images available for this experience.</p>';
   
-  if (images.length === 0) {
-    alert(`📁 No images found in "${category.folder}" folder.\n\nTo add images:\n\n1. Edit the USER_IMAGES array in the JavaScript section\n\n2. Or place PNG files in: images/${category.folder}/\n\nSupported names: 1.png, 2.png, image1.png, design_1.png, etc.`);
-    return;
-  }
+  const achievementsHtml = exp.achievements && exp.achievements.length > 0 ?
+    `<ul style="color:#c0c0c0; margin-left:20px;">${exp.achievements.map(a => `<li style="margin:8px 0;">${a}</li>`).join('')}</ul>` :
+    '';
   
-  // Set gallery content
-  document.getElementById('galleryTitle').innerHTML = `<i class="fas ${category.icon}"></i> ${category.name}`;
-  document.getElementById('galleryDesc').innerHTML = category.description;
-  document.getElementById('galleryStats').innerHTML = `<span><i class="fas fa-images"></i> ${images.length} Design${images.length !== 1 ? 's' : ''}</span><span><i class="fas fa-tag"></i> ${category.category}</span>`;
-  
-  // Render images grid
-  const grid = document.getElementById('galleryGrid');
-  grid.innerHTML = images.map(img => `
-    <div class="image-card" onclick="openFullscreenImage('${img.url}')">
-      <img src="${img.url}" alt="${img.title}" loading="lazy" onerror="this.src='https://placehold.co/800x600/262626/00d4c0?text=Image+Not+Found'">
-      <div class="card-info">
-        <h3><i class="fas fa-image"></i> ${img.title}</h3>
-        <p>${img.description}</p>
+  container.innerHTML = `
+    <div class="detail-header">
+      <h2>${exp.title}</h2>
+      <div class="company"><i class="fas fa-building"></i> ${exp.company} | ${exp.date}</div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-section">
+        <h3><i class="fas fa-briefcase"></i> Role Overview</h3>
+        <p>${exp.fullDesc || exp.shortDesc}</p>
+      </div>
+      <div class="detail-section">
+        <h3><i class="fas fa-code-branch"></i> Key Responsibilities</h3>
+        <div>${exp.skills.map(s => `<span class="skill-tag"><i class="fas fa-check-circle"></i> ${s}</span>`).join(' ')}</div>
+      </div>
+      ${achievementsHtml ? `<div class="detail-section"><h3><i class="fas fa-trophy"></i> Achievements</h3>${achievementsHtml}</div>` : ''}
+      <div class="detail-section">
+        <h3><i class="fas fa-images"></i> Work Gallery</h3>
+        ${imagesHtml}
+      </div>
+    </div>
+  `;
+  document.getElementById('detailModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+// Render Functions
+function renderExperience() {
+  const grid = document.getElementById('experienceGrid');
+  if(!grid) return;
+  grid.innerHTML = WORK_EXPERIENCES.map(exp => `
+    <div class="experience-card" onclick="openExperienceDetail(${JSON.stringify(exp).replace(/"/g, '&quot;')})">
+      <div class="exp-image"><i class="fas fa-briefcase"></i></div>
+      <div class="exp-info">
+        <h3>${exp.title}</h3>
+        <div class="exp-company"><i class="fas fa-building"></i> ${exp.company}</div>
+        <div class="exp-date"><i class="fas fa-calendar-alt"></i> ${exp.date}</div>
+        <p class="exp-description">${exp.shortDesc.substring(0, 100)}...</p>
+        <div class="exp-skills">${exp.skills.slice(0,4).map(s=>`<span>${s}</span>`).join('')}</div>
+        <button class="view-details-btn" onclick="event.stopPropagation();openExperienceDetail(${JSON.stringify(exp).replace(/"/g, '&quot;')})"><i class="fas fa-external-link-alt"></i> View Full Details</button>
       </div>
     </div>
   `).join('');
-  
-  // Show modal
+}
+
+function renderCertifications() {
+  const grid = document.getElementById('certsGrid');
+  if(!grid) return;
+  grid.innerHTML = CERTIFICATIONS.map(cert => `
+    <div class="certs-card" onclick="openFullscreen('${cert.image}')">
+      <div class="certs-image"><i class="fas fa-certificate"></i></div>
+      <div class="certs-info">
+        <h3>${cert.title}</h3>
+        <div class="exp-company"><i class="fas fa-building"></i> ${cert.organization}</div>
+        <div class="exp-date"><i class="fas fa-calendar-alt"></i> ${cert.date}</div>
+        <p class="certs-desc">${cert.description}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  if(!grid) return;
+  grid.innerHTML = PROJECTS.map(proj => `
+    <div class="project-card" onclick="window.open('${proj.github}', '_blank')">
+      <div class="project-image"><i class="fas fa-code"></i></div>
+      <div class="project-info">
+        <h3>${proj.title}</h3>
+        <p class="project-desc">${proj.description}</p>
+        <div class="project-tech">${proj.tech.map(t=>`<span>${t}</span>`).join('')}</div>
+        <button class="view-details-btn" onclick="event.stopPropagation();window.open('${proj.github}', '_blank')"><i class="fab fa-github"></i> View on GitHub</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function renderSamples() {
+  const grid = document.getElementById('samplesGrid');
+  if(!grid) return;
+  grid.innerHTML = '<div style="text-align:center; padding:60px;"><i class="fas fa-spinner fa-spin" style="font-size:48px;"></i><p>Loading designs...</p></div>';
+  const categories = await loadCategories();
+  const hasAny = categories.some(c=>c.imageCount>0);
+  if(!hasAny) {
+    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:60px;"><i class="fas fa-folder-open" style="font-size:64px; color:#00d4c0;"></i><h3>Add Your Images</h3><p>Place PNG files in: images/poster/, images/social/, images/packaging/, images/uiux/</p></div>`;
+    return;
+  }
+  grid.innerHTML = categories.map(cat => `
+    <div class="sample-card" onclick="openGallery(${cat.id})">
+      <div class="sample-preview"><i class="fas ${cat.icon}"></i></div>
+      <div class="sample-info">
+        <h3>${cat.name}</h3>
+        <span class="sample-stats"><i class="fas fa-images"></i> ${cat.imageCount} design${cat.imageCount!==1?'s':''}</span>
+        <button class="view-gallery-btn" onclick="event.stopPropagation();openGallery(${cat.id})"><i class="fas fa-images"></i> View Gallery</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function openGallery(catId) {
+  const categories = await loadCategories();
+  const cat = categories.find(c=>c.id===catId);
+  if(!cat || cat.images.length===0) return;
+  document.getElementById('galleryTitle').innerHTML = `<i class="fas ${cat.icon}"></i> ${cat.name}`;
+  document.getElementById('galleryDesc').innerHTML = `${cat.category} Design Collection • ${cat.imageCount} Images`;
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = cat.images.map(img => `
+    <div class="detail-img-card" onclick="openFullscreen('${img.url}')">
+      <img src="${img.url}" onerror="this.src='https://placehold.co/800x600/262626/00d4c0?text=Design'">
+      <div class="img-caption">${img.title}</div>
+    </div>
+  `).join('');
   document.getElementById('galleryModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-function closeGalleryModal() {
-  document.getElementById('galleryModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if(t) t.scrollIntoView({ behavior: 'smooth' }); }));
 
-function openFullscreenImage(url) {
-  const modal = document.createElement('div');
-  modal.className = 'fullscreen-modal';
-  modal.onclick = () => modal.remove();
-  
-  const img = document.createElement('img');
-  img.src = url;
-  
-  modal.appendChild(img);
-  document.body.appendChild(modal);
-}
+// Initialize
+document.addEventListener('DOMContentLoaded', () => { renderExperience(); renderCertifications(); renderProjects(); renderSamples(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ document.querySelectorAll('.detail-modal.active').forEach(m=>m.classList.remove('active')); document.body.style.overflow=''; } });
 
-// Render samples grid on main page
-async function renderSamples() {
-  const grid = document.getElementById('samplesGrid');
-  if (!grid) return;
-  
-  grid.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i><p style="margin-top: 15px;">Loading your designs...</p></div>';
-  
-  const categories = await loadCategories();
-  const hasAnyImages = categories.some(c => c.imageCount > 0);
-  
-  if (!hasAnyImages) {
-    grid.innerHTML = `
-      <div style="grid-column:1/-1; text-align:center; padding:60px; background:var(--bg-card); border-radius:40px; border:1px solid var(--border);">
-        <i class="fas fa-folder-open" style="font-size:64px; color:var(--primary); margin-bottom:20px; display:block;"></i>
-        <h3>📸 Add Your Design Images</h3>
-        <p style="color:var(--text-secondary); margin-top:15px; max-width:550px; margin-left:auto; margin-right:auto;">
-          <strong>Two ways to add your images:</strong><br><br>
-          1️⃣ <strong>Easy way:</strong> Edit the <code style="background:#1a1a1a; padding:2px 6px; border-radius:4px;">USER_IMAGES</code> array in the JavaScript section<br><br>
-          2️⃣ <strong>Auto-detect:</strong> Place PNG files in folders:<br>
-          <code style="background:#1a1a1a; padding:8px 12px; border-radius:8px; display:inline-block; margin-top:10px;">
-          images/poster/ (any filename)<br>
-          images/social/ (any filename)<br>
-          images/packaging/ (any filename)<br>
-          images/uiux/ (any filename)
-          </code>
-        </p>
-        <p style="color:var(--text-muted); margin-top:20px; font-size:0.85rem;">
-          Works with ANY filenames - no naming restrictions!
-        </p>
-      </div>
-    `;
-    return;
-  }
-  
-  grid.innerHTML = categories.map(cat => `
-    <div class="sample-card" onclick="openInlineGallery(${JSON.stringify(cat).replace(/"/g, '&quot;')})">
-      <div class="sample-preview">
-        <i class="fas ${cat.icon}"></i>
-      </div>
-      <div class="sample-info">
-        <h3>${cat.name}</h3>
-        <p>${cat.description.substring(0, 80)}...</p>
-        <span class="sample-stats"><i class="fas fa-images"></i> ${cat.imageCount} design${cat.imageCount !== 1 ? 's' : ''}</span>
-        <button class="view-gallery-btn" onclick="event.stopPropagation(); openInlineGallery(${JSON.stringify(cat).replace(/"/g, '&quot;')})">
-          <i class="fas fa-images"></i> View Gallery (${cat.imageCount} images)
-        </button>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Make functions globally available
-window.openInlineGallery = openInlineGallery;
-window.closeGalleryModal = closeGalleryModal;
-window.openFullscreenImage = openFullscreenImage;
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', renderSamples);
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeGalleryModal();
-  }
-});
+window.openExperienceDetail = openExperienceDetail;
+window.closeDetailModal = closeDetailModal;
+window.closeModal = closeModal;
+window.openFullscreen = openFullscreen;
+window.openGallery = openGallery;
 </script>
 </body>
 </html>
